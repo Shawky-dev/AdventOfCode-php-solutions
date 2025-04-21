@@ -29,7 +29,7 @@ function getArraysFromList($filename)
         $file = fopen($filename, "r");
 
         while (($line = fgets($file)) !== false) {
-            $parts = preg_split('/\s+/', $line);
+            $parts = explode("   ", trim($line));
             $list1[] = (int)$parts[0];
             $list2[] = (int)$parts[1];
         }
@@ -37,7 +37,8 @@ function getArraysFromList($filename)
         fclose($file);
         sort($list1);
         sort($list2);
-        echo getDistance($list1, $list2);
+        echo "part1: ";
+        echo getDistance($list1, $list2) . "<br>";
     } else {
         echo "Error: File not found or not readable.";
     }
